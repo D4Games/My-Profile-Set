@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D4 Games · Official Profile Set & Brand Identity</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Space Grotesk, Inter & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        d4: {
+                            dark: '#07090e',
+                            card: '#0f131d',
+                            border: '#1e2638',
+                            cyan: '#00f5d4',
+                            violet: '#7b2cbf',
+                            magenta: '#f72585',
+                            amber: '#ffbe0b'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #07090e;
+            color: #e2e8f0;
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(0, 245, 212, 0.06), transparent 35%),
+                radial-gradient(circle at 85% 80%, rgba(123, 44, 191, 0.08), transparent 40%);
+        }
+        .cyber-grid {
+            background-size: 28px 28px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        }
+        .glow-card {
+            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+        }
+        .glow-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(0, 245, 212, 0.45);
+            box-shadow: 0 12px 32px -10px rgba(0, 245, 212, 0.2);
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col selection:bg-d4-cyan/30 selection:text-d4-cyan">
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+        <div class="bg-[#0f131d] border border-d4-cyan/40 text-white px-4 py-3 rounded-xl shadow-2xl flex items-center gap-3">
+            <i data-lucide="sparkles" class="w-4 h-4 text-d4-cyan"></i>
+            <span id="toast-msg" class="text-sm font-medium">Copied to clipboard!</span>
+        </div>
+    </div>
+
+    <!-- Top Studio Header -->
+    <header class="sticky top-0 z-40 bg-[#07090e]/90 backdrop-blur-md border-b border-[#1e2638]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-d4-cyan to-d4-violet p-[1.5px]">
+                    <div class="w-full h-full bg-[#07090e] rounded-[7px] flex items-center justify-center font-mono font-extrabold text-sm text-white">
+                        D4
+                    </div>
+                </div>
+                <div>
+                    <span class="font-display font-bold text-lg tracking-tight text-white">D4 GAMES</span>
+                    <span class="hidden sm:inline-block ml-2 text-xs font-mono px-2 py-0.5 rounded-full bg-d4-cyan/10 text-d4-cyan border border-d4-cyan/25">
+                        OFFICIAL PROFILE SET
+                    </span>
+                </div>
+            </div>
+
+            <!-- Theme Accent Switcher -->
+            <div class="flex items-center gap-2 sm:gap-3">
+                <span class="text-xs text-slate-400 hidden md:inline font-mono">PROFILE THEME:</span>
+                <div class="flex items-center gap-1.5 bg-[#0f131d] p-1 rounded-lg border border-[#1e2638]">
+                    <button onclick="setTheme('cyber')" title="Neon Cyber" class="w-6 h-6 rounded-md bg-gradient-to-tr from-[#00f5d4] to-[#3b82f6] ring-2 ring-white/80 transition-transform hover:scale-105"></button>
+                    <button onclick="setTheme('crimson')" title="Crimson Boss" class="w-6 h-6 rounded-md bg-gradient-to-tr from-[#f72585] to-[#ffbe0b] opacity-80 hover:opacity-100 transition-transform hover:scale-105"></button>
+                    <button onclick="setTheme('emerald')" title="Toxic Arcade" class="w-6 h-6 rounded-md bg-gradient-to-tr from-[#10b981] to-[#a3e635] opacity-80 hover:opacity-100 transition-transform hover:scale-105"></button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Studio Profile Set Grid -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
+
+        <!-- SECTION 1: FLAGSHIP BANNER & STUDIO IDENTITY HEADER -->
+        <section class="relative rounded-2xl overflow-hidden border border-[#1e2638] bg-[#0f131d] shadow-2xl">
+            <!-- Cover Banner Art (1500x500 aspect feel) -->
+            <div id="hero-banner" class="relative h-48 sm:h-64 w-full cyber-grid bg-gradient-to-r from-[#090d16] via-[#131b2e] to-[#1a1033] overflow-hidden flex items-center justify-center">
+                <!-- Decorative Geometric D4 Polygons -->
+                <svg class="absolute inset-0 w-full h-full opacity-30 pointer-events-none" viewBox="0 0 1200 320" preserveAspectRatio="xMidYMid slice">
+                    <polygon points="180,40 280,220 80,220" fill="none" stroke="#00f5d4" stroke-width="2"/>
+                    <polygon points="1020,60 1140,260 900,260" fill="none" stroke="#f72585" stroke-width="2"/>
+                    <line x1="0" y1="280" x2="1200" y2="280" stroke="#00f5d4" stroke-width="1" stroke-dasharray="6 6"/>
+                </svg>
+
+                <div class="relative z-10 text-center px-4">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/50 backdrop-blur-md border border-white/10 text-xs font-mono text-d4-cyan mb-2">
+                        <span class="w-2 h-2 rounded-full bg-d4-cyan animate-ping"></span>
+                        EST. 2026 · INDIE HTML5 & ARCADE STUDIO
+                    </div>
+                    <h1 class="font-display text-3xl sm:text-5xl font-bold tracking-tight text-white drop-shadow-lg">
+                        D4 GAMES
+                    </h1>
+                    <p class="text-xs sm:text-sm font-mono text-slate-300 mt-1 tracking-widest uppercase">
+                        Roll the D4 · Play Anywhere · Zero Installs
+                    </p>
+                </div>
+
+                <!-- Copy Banner Tagline Button -->
+                <button onclick="copyText('D4 GAMES — Indie HTML5 & WebGL Arcade Studio | Roll the D4. Play Anywhere.')" class="absolute top-3 right-3 bg-black/60 hover:bg-black/80 text-xs text-slate-200 border border-white/15 px-3 py-1.5 rounded-lg backdrop-blur-md flex items-center gap-1.5 transition-colors">
+                    <i data-lucide="copy" class="w-3.5 h-3.5 text-d4-cyan"></i>
+                    <span class="hidden sm:inline">Copy Studio Bio</span>
+                </button>
+            </div>
+
+            <!-- Profile Bar Below Banner -->
+            <div class="px-6 pb-6 pt-4 sm:px-8 flex flex-col md:flex-row md:items-end justify-between gap-6 relative">
+                <div class="flex flex-col sm:flex-row items-start sm:items-end gap-5 -mt-16 sm:-mt-20 relative z-20">
+                    <!-- Main Square/Circle Avatar Asset -->
+                    <div id="main-avatar-box" class="w-28 h-28 sm:w-36 sm:h-36 rounded-2xl bg-[#07090e] p-1.5 border-2 border-d4-cyan shadow-[0_0_30px_rgba(0,245,212,0.25)] shrink-0">
+                        <div class="w-full h-full rounded-xl bg-gradient-to-br from-[#121826] to-[#090c14] flex items-center justify-center relative overflow-hidden">
+                            <svg id="d4-logo-svg" viewBox="0 0 200 200" class="w-4/5 h-4/5">
+                                <defs>
+                                    <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop id="grad-stop-1" offset="0%" stop-color="#00f5d4"/>
+                                        <stop id="grad-stop-2" offset="100%" stop-color="#7b2cbf"/>
+                                    </linearGradient>
+                                </defs>
+                                <polygon points="100,18 182,162 18,162" fill="none" stroke="url(#logoGrad)" stroke-width="10" stroke-linejoin="round"/>
+                                <line x1="100" y1="18" x2="100" y2="116" stroke="url(#logoGrad)" stroke-width="6" stroke-linecap="round"/>
+                                <line x1="182" y1="162" x2="100" y2="116" stroke="url(#logoGrad)" stroke-width="6" stroke-linecap="round"/>
+                                <line x1="18" y1="162" x2="100" y2="116" stroke="url(#logoGrad)" stroke-width="6" stroke-linecap="round"/>
+                                <text x="100" y="150" text-anchor="middle" fill="#ffffff" font-family="JetBrains Mono, monospace" font-weight="800" font-size="34">D4</text>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="space-y-1 pb-1">
+                        <div class="flex items-center gap-2.5 flex-wrap">
+                            <h2 class="font-display text-2xl font-bold text-white">D4 Games Official</h2>
+                            <span class="px-2.5 py-0.5 text-xs font-mono font-bold rounded-md bg-d4-cyan/15 text-d4-cyan border border-d4-cyan/30">
+                                VERIFIED STUDIO
+                            </span>
+                        </div>
+                        <p class="text-sm text-slate-400 max-w-xl">
+                            Complete profile set for Discord, YouTube, Itch.io, X/Twitter, and Steam. Download crisp SVG avatars or customize your D4 Gamer Card below.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Download Avatar SVG Action -->
+                <div class="flex flex-wrap gap-2.5 shrink-0">
+                    <button onclick="downloadAvatarSVG()" class="bg-d4-cyan hover:bg-teal-300 text-[#07090e] font-bold px-4 py-2.5 rounded-xl text-sm flex items-center gap-2 transition-colors shadow-lg">
+                        <i data-lucide="download" class="w-4 h-4"></i>
+                        <span>Download Avatar (.SVG)</span>
+                    </button>
+                    <button onclick="copyText('@D4GamesOfficial')" class="bg-[#161c2b] hover:bg-[#1f273b] text-white border border-[#2a354d] font-mono px-4 py-2.5 rounded-xl text-sm flex items-center gap-2 transition-colors">
+                        <i data-lucide="at-sign" class="w-4 h-4 text-d4-cyan"></i>
+                        <span>@D4GamesOfficial</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: PROFILE SET VARIATIONS (AVATARS, GAMER CARD & SOCIAL HANDLES) -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+            <!-- LEFT (7 Cols): Avatar Variants & Social Bio Kit -->
+            <div class="lg:col-span-7 space-y-6">
+                
+                <!-- 3 Avatar Variants for Different Platforms -->
+                <div class="bg-[#0f131d] border border-[#1e2638] rounded-2xl p-6 space-y-5">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h3 class="font-display text-lg font-bold text-white">Avatar & Icon Set</h3>
+                            <p class="text-xs text-slate-400">Tailored icons for Discord, YouTube, Steam, and Itch.io</p>
+                        </div>
+                        <span class="text-xs font-mono text-slate-400 bg-[#07090e] px-2.5 py-1 rounded-md border border-[#1e2638]">3 Variants</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <!-- Variant 1: Primary Emblem -->
+                        <div class="glow-card bg-[#07090e] border border-[#1e2638] rounded-xl p-4 flex flex-col items-center text-center gap-3">
+                            <div class="w-20 h-20 rounded-full bg-gradient-to-tr from-cyan-500/20 to-purple-600/20 border border-d4-cyan/50 flex items-center justify-center">
+                                <span class="font-mono font-extrabold text-2xl text-white tracking-tighter">D4<span class="text-d4-cyan">.</span></span>
+                            </div>
+                            <div>
+                                <div class="text-sm font-semibold text-white">Primary Badge</div>
+                                <div class="text-[11px] text-slate-400">Discord & Socials</div>
+                            </div>
+                            <button onclick="downloadAvatarSVG()" class="w-full py-1.5 rounded-lg bg-[#161c2b] hover:bg-[#1f273b] text-xs font-medium text-d4-cyan transition-colors">
+                                Save Icon
+                            </button>
+                        </div>
+
+                        <!-- Variant 2: Arcade Pixel Edition -->
+                        <div class="glow-card bg-[#07090e] border border-[#1e2638] rounded-xl p-4 flex flex-col items-center text-center gap-3">
+                            <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-fuchsia-600/20 to-amber-500/20 border border-pink-500/50 flex items-center justify-center">
+                                <span class="text-3xl">🎲</span>
+                            </div>
+                            <div>
+                                <div class="text-sm font-semibold text-white">Studio Mascot</div>
+                                <div class="text-[11px] text-slate-400">Itch.io & Steam</div>
+                            </div>
+                            <button onclick="copyText('🎲 D4 Games')" class="w-full py-1.5 rounded-lg bg-[#161c2b] hover:bg-[#1f273b] text-xs font-medium text-pink-400 transition-colors">
+                                Copy Tag
+                            </button>
+                        </div>
+
+                        <!-- Variant 3: Minimal Monogram -->
+                        <div class="glow-card bg-[#07090e] border border-[#1e2638] rounded-xl p-4 flex flex-col items-center text-center gap-3">
+                            <div class="w-20 h-20 rounded-xl bg-white text-[#07090e] flex items-center justify-center shadow-inner">
+                                <span class="font-display font-black text-3xl tracking-tighter">D4</span>
+                            </div>
+                            <div>
+                                <div class="text-sm font-semibold text-white">High-Contrast</div>
+                                <div class="text-[11px] text-slate-400">Watermark & Favicon</div>
+                            </div>
+                            <button onclick="copyText('#00F5D4 / #07090E')" class="w-full py-1.5 rounded-lg bg-[#161c2b] hover:bg-[#1f273b] text-xs font-medium text-slate-200 transition-colors">
+                                Copy Hex
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ready-to-Use Platform Bios & Links -->
+                <div class="bg-[#0f131d] border border-[#1e2638] rounded-2xl p-6 space-y-4">
+                    <h3 class="font-display text-lg font-bold text-white">Platform Profile Bios</h3>
+                    
+                    <div class="space-y-3">
+                        <!-- Short Bio (X / Discord) -->
+                        <div class="bg-[#07090e] border border-[#1e2638] rounded-xl p-3.5 flex items-center justify-between gap-4">
+                            <div class="space-y-1">
+                                <span class="text-[11px] font-mono uppercase text-d4-cyan">Short Bio (Discord / X / TikTok)</span>
+                                <p class="text-sm text-slate-200">🎲 D4 Games | Crafting fast, zero-install HTML5 & browser arcade games. Play now in your browser!</p>
+                            </div>
+                            <button onclick="copyText('🎲 D4 Games | Crafting fast, zero-install HTML5 & browser arcade games. Play now in your browser!')" class="p-2 rounded-lg bg-[#161c2b] hover:bg-[#1f273b] text-slate-300 shrink-0" title="Copy">
+                                <i data-lucide="copy" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+
+                        <!-- Full Studio Bio (Itch.io / YouTube) -->
+                        <div class="bg-[#07090e] border border-[#1e2638] rounded-xl p-3.5 flex items-center justify-between gap-4">
+                            <div class="space-y-1">
+                                <span class="text-[11px] font-mono uppercase text-purple-400">Full Studio Bio (Itch.io / YouTube)</span>
+                                <p class="text-sm text-slate-200">Welcome to D4 Games! We design high-framerate HTML5 arcade games, neon shooters, and bite-sized web experiences built to run smoothly on any device.</p>
+                            </div>
+                            <button onclick="copyText('Welcome to D4 Games! We design high-framerate HTML5 arcade games, neon shooters, and bite-sized web experiences built to run smoothly on any device.')" class="p-2 rounded-lg bg-[#161c2b] hover:bg-[#1f273b] text-slate-300 shrink-0" title="Copy">
+                                <i data-lucide="copy" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT (5 Cols): Interactive Gamer Card Generator -->
+            <div class="lg:col-span-5 space-y-6">
+                <div class="bg-[#0f131d] border border-[#1e2638] rounded-2xl p-6 space-y-5">
+                    <div>
+                        <h3 class="font-display text-lg font-bold text-white">D4 Gamer & Creator Card</h3>
+                        <p class="text-xs text-slate-400">Customize your D4 Games member pass</p>
+                    </div>
+
+                    <!-- Live Preview Card -->
+                    <div id="gamer-card" class="relative rounded-2xl p-5 bg-gradient-to-br from-[#131b2e] via-[#0d121f] to-[#1e1136] border border-d4-cyan/40 shadow-xl overflow-hidden space-y-5">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 rounded-xl bg-d4-cyan/15 border border-d4-cyan/40 flex items-center justify-center font-mono font-extrabold text-lg text-d4-cyan">
+                                    D4
+                                </div>
+                                <div>
+                                    <div id="card-display-name" class="font-display font-bold text-lg text-white">D4 Founder</div>
+                                    <div id="card-display-role" class="text-xs font-mono text-d4-cyan">Game Creator · LVL 4</div>
+                                </div>
+                            </div>
+                            <div class="text-right font-mono">
+                                <div class="text-[10px] text-slate-400">ID PASS</div>
+                                <div class="text-xs font-bold text-white">#D4-0001</div>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-3 gap-2 pt-2 border-t border-white/10 text-center">
+                            <div class="bg-black/30 rounded-lg p-2">
+                                <div class="text-[10px] font-mono text-slate-400">TITLES</div>
+                                <div class="text-sm font-bold text-white">4 Games</div>
+                            </div>
+                            <div class="bg-black/30 rounded-lg p-2">
+                                <div class="text-[10px] font-mono text-slate-400">ENGINE</div>
+                                <div class="text-sm font-bold text-d4-cyan">HTML5</div>
+                            </div>
+                            <div class="bg-black/30 rounded-lg p-2">
+                                <div class="text-[10px] font-mono text-slate-400">RANK</div>
+                                <div class="text-sm font-bold text-amber-400">S-Tier</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card Customizer Inputs -->
+                    <div class="space-y-3 pt-1">
+                        <div>
+                            <label class="block text-xs font-mono text-slate-400 mb-1">DISPLAY NAME</label>
+                            <input type="text" id="input-name" value="D4 Founder" oninput="updateGamerCard()" maxlength="22" class="w-full bg-[#07090e] border border-[#1e2638] focus:border-d4-cyan focus:outline-none rounded-lg px-3.5 py-2 text-sm text-white">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-mono text-slate-400 mb-1">PROFILE TITLE / CLASS</label>
+                            <select id="input-role" onchange="updateGamerCard()" class="w-full bg-[#07090e] border border-[#1e2638] focus:border-d4-cyan focus:outline-none rounded-lg px-3.5 py-2 text-sm text-white">
+                                <option value="Game Creator · LVL 4">Game Creator · LVL 4</option>
+                                <option value="Arcade Champion · LVL 99">Arcade Champion · LVL 99</option>
+                                <option value="Pixel Architect · LVL 12">Pixel Architect · LVL 12</option>
+                                <option value="Beta Tester · Founding Squad">Beta Tester · Founding Squad</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 3: PLAYABLE HTML5 PROFILE MINI-GAME -->
+        <section class="bg-[#0f131d] border border-[#1e2638] rounded-2xl p-6 space-y-4">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div>
+                    <div class="flex items-center gap-2">
+                        <span class="px-2 py-0.5 text-[11px] font-mono bg-d4-cyan/15 text-d4-cyan border border-d4-cyan/30 rounded">INTERACTIVE WIDGET</span>
+                        <h3 class="font-display text-lg font-bold text-white">D4 Dice Runner (HTML5 Mini-Game)</h3>
+                    </div>
+                    <p class="text-xs text-slate-400 mt-1">Embeddable profile mini-game — Move with Arrow Keys or Mouse/Touch to collect D4 Shards!</p>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="bg-[#07090e] border border-[#1e2638] px-3.5 py-1.5 rounded-lg font-mono text-sm">
+                        SCORE: <span id="score-val" class="text-d4-cyan font-bold">0</span>
+                    </div>
+                    <button onclick="startGame()" class="bg-d4-cyan hover:bg-teal-300 text-[#07090e] font-bold px-4 py-2 rounded-lg text-xs sm:text-sm transition-colors flex items-center gap-1.5">
+                        <i data-lucide="play" class="w-4 h-4 fill-current"></i>
+                        <span>Start Game</span>
+                    </button>
+                </div>
+            </div>
+
+            <div id="game-box" class="relative w-full h-64 bg-[#07090e] border border-[#1e2638] rounded-xl overflow-hidden select-none">
+                <canvas id="profile-canvas" class="block w-full h-full"></canvas>
+                <div id="game-start-mask" class="absolute inset-0 bg-[#07090e]/85 backdrop-blur-xs flex flex-col items-center justify-center p-4 text-center">
+                    <div class="text-3xl mb-2">🎲</div>
+                    <p class="font-display font-bold text-white text-base">D4 Games Interactive Showcase</p>
+                    <p class="text-xs text-slate-400 max-w-xs mt-1 mb-3">Dodge red spikes and collect glowing cyan D4 gems.</p>
+                    <button onclick="startGame()" class="bg-d4-cyan text-[#07090e] font-bold px-4 py-2 rounded-lg text-xs hover:bg-teal-300 transition-colors">
+                        Play Now
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-[#1e2638] py-6 px-4 text-center text-xs text-slate-500 font-mono">
+        D4 GAMES STUDIO · OFFICIAL HTML5 PROFILE SET · 2026
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        // Toast Helper
+        let toastTimer;
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-msg').textContent = message;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 2600);
+        }
+
+        // Copy Text Helper (iFrame safe)
+        function copyText(text) {
+            const el = document.createElement('textarea');
+            el.value = text;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+            showToast('Copied to clipboard!');
+        }
+
+        // Update Gamer Card Live
+        function updateGamerCard() {
+            const name = document.getElementById('input-name').value.trim() || 'D4 Player';
+            const role = document.getElementById('input-role').value;
+            document.getElementById('card-display-name').textContent = name;
+            document.getElementById('card-display-role').textContent = role;
+        }
+
+        // Theme Accent Switcher
+        function setTheme(theme) {
+            const s1 = document.getElementById('grad-stop-1');
+            const s2 = document.getElementById('grad-stop-2');
+            const avatarBox = document.getElementById('main-avatar-box');
+            
+            if (theme === 'cyber') {
+                s1.setAttribute('stop-color', '#00f5d4');
+                s2.setAttribute('stop-color', '#7b2cbf');
+                avatarBox.style.borderColor = '#00f5d4';
+                showToast('Applied Neon Cyber Profile Theme');
+            } else if (theme === 'crimson') {
+                s1.setAttribute('stop-color', '#f72585');
+                s2.setAttribute('stop-color', '#ffbe0b');
+                avatarBox.style.borderColor = '#f72585';
+                showToast('Applied Crimson Boss Profile Theme');
+            } else if (theme === 'emerald') {
+                s1.setAttribute('stop-color', '#10b981');
+                s2.setAttribute('stop-color', '#a3e635');
+                avatarBox.style.borderColor = '#10b981';
+                showToast('Applied Toxic Arcade Profile Theme');
+            }
+        }
+
+        // Download Standalone D4 Games SVG Avatar
+        function downloadAvatarSVG() {
+            const svgContent = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="512" height="512">
+                <rect width="200" height="200" rx="36" fill="#07090e"/>
+                <defs>
+                    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#00f5d4"/>
+                        <stop offset="100%" stop-color="#7b2cbf"/>
+                    </linearGradient>
+                </defs>
+                <polygon points="100,22 178,160 22,160" fill="none" stroke="url(#g)" stroke-width="10" stroke-linejoin="round"/>
+                <line x1="100" y1="22" x2="100" y2="116" stroke="url(#g)" stroke-width="6" stroke-linecap="round"/>
+                <line x1="178" y1="160" x2="100" y2="116" stroke="url(#g)" stroke-width="6" stroke-linecap="round"/>
+                <line x1="22" y1="160" x2="100" y2="116" stroke="url(#g)" stroke-width="6" stroke-linecap="round"/>
+                <text x="100" y="149" text-anchor="middle" fill="#ffffff" font-family="monospace" font-weight="800" font-size="34">D4</text>
+            </svg>`;
+            const blob = new Blob([svgContent], { type: 'image/svg+xml' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'd4-games-avatar.svg';
+            a.click();
+            URL.revokeObjectURL(url);
+            showToast('Downloaded d4-games-avatar.svg!');
+        }
+
+        // ==========================================
+        // EMBEDDED MINI-GAME: D4 DICE RUNNER
+        // ==========================================
+        const canvas = document.getElementById('profile-canvas');
+        const ctx = canvas.getContext('2d');
+        let running = false;
+        let rafId;
+        let score = 0;
+        let player = { x: 160, y: 200, r: 16 };
+        let items = [];
+        let keys = {};
+
+        function resizeCanvas() {
+            const box = document.getElementById('game-box');
+            canvas.width = box.clientWidth;
+            canvas.height = box.clientHeight;
+            player.y = canvas.height - 32;
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        window.addEventListener('keydown', e => keys[e.key] = true);
+        window.addEventListener('keyup', e => keys[e.key] = false);
+
+        canvas.addEventListener('pointermove', e => {
+            if (!running) return;
+            const rect = canvas.getBoundingClientRect();
+            player.x = Math.max(20, Math.min(canvas.width - 20, e.clientX - rect.left));
+        });
+
+        function startGame() {
+            resizeCanvas();
+            document.getElementById('game-start-mask').classList.add('hidden');
+            running = true;
+            score = 0;
+            items = [];
+            player.x = canvas.width / 2;
+            document.getElementById('score-val').textContent = '0';
+            cancelAnimationFrame(rafId);
+            loop();
+        }
+
+        function loop() {
+            if (!running) return;
+            ctx.fillStyle = 'rgba(7, 9, 14, 0.35)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            if (keys['ArrowLeft'] || keys['a']) player.x -= 6;
+            if (keys['ArrowRight'] || keys['d']) player.x += 6;
+            player.x = Math.max(20, Math.min(canvas.width - 20, player.x));
+
+            if (Math.random() < 0.05) {
+                items.push({
+                    x: Math.random() * (canvas.width - 30) + 15,
+                    y: -15,
+                    type: Math.random() < 0.45 ? 'gem' : 'spike',
+                    speed: 3 + Math.random() * 2.5 + score * 0.015
+                });
+            }
+
+            // Draw Player Tetrahedron
+            ctx.save();
+            ctx.translate(player.x, player.y);
+            ctx.beginPath();
+            ctx.moveTo(0, -player.r);
+            ctx.lineTo(player.r, player.r);
+            ctx.lineTo(-player.r, player.r);
+            ctx.closePath();
+            ctx.fillStyle = '#00f5d4';
+            ctx.shadowColor = '#00f5d4';
+            ctx.shadowBlur = 12;
+            ctx.fill();
+            ctx.restore();
+
+            for (let i = items.length - 1; i >= 0; i--) {
+                const it = items[i];
+                it.y += it.speed;
+
+                if (it.type === 'gem') {
+                    ctx.fillStyle = '#00f5d4';
+                    ctx.beginPath();
+                    ctx.arc(it.x, it.y, 6, 0, Math.PI * 2);
+                    ctx.fill();
+                } else {
+                    ctx.fillStyle = '#f72585';
+                    ctx.fillRect(it.x - 8, it.y - 8, 16, 16);
+                }
+
+                if (Math.hypot(player.x - it.x, player.y - it.y) < player.r + 8) {
+                    if (it.type === 'gem') {
+                        score += 10;
+                        document.getElementById('score-val').textContent = score;
+                        items.splice(i, 1);
+                    } else {
+                        running = false;
+                        const mask = document.getElementById('game-start-mask');
+                        mask.innerHTML = `
+                            <div class="text-2xl mb-1">💥</div>
+                            <p class="font-display font-bold text-white">Game Over · Final Score: ${score}</p>
+                            <button onclick="startGame()" class="mt-3 bg-d4-cyan text-[#07090e] font-bold px-4 py-2 rounded-lg text-xs">
+                                Play Again
+                            </button>
+                        `;
+                        mask.classList.remove('hidden');
+                        return;
+                    }
+                } else if (it.y > canvas.height + 20) {
+                    items.splice(i, 1);
+                }
+            }
+
+            rafId = requestAnimationFrame(loop);
+        }
+
+        window.onload = resizeCanvas;
+    </script>
+</body>
+</html>
